@@ -5,14 +5,40 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #616161; /* Red background color */
-    background-image: url(/resources/images/backround/backround.png); /* Path to your background image */
-    background-size: cover; /* Adjust the background size as needed */
-    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-image: url("/resources/images/backround/Yellow.jpg");
+    background-position-x: 50%;
+    animation-delay: 0s;
+    animation-duration: 80s;
+    animation-name: panoramic;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    width: 444px;
+    overflow: hidden;
+    margin: 0 auto;
+    will-change: background-position-x; /* Red background color */
+    /*background-image: url(/resources/images/backround/backround.png); /* Path to your background image */
+    /*background-size: fixed; /* Adjust the background size as needed */
+    /*background-repeat: repeat-x; /* Prevent the background from repeating */
+    /*https://stackoverflow.com/questions/42649028/how-to-animate-a-background-image-from-left-to-right-and-from-right-to-left*/
 }
 
 /* Add border to the canvas element */
 canvas {
     border: 1px solid #08bd29; /* 1 pixel solid white border */
+    border-radius: 5px; /* 5 pixels rounded border */
     /* Additional styles for the canvas if needed */
 }
+
+  
+  @keyframes panoramic {
+    0% {
+      background-position-x: 0%;
+    }
+    50% {
+      background-position-x: 100%;
+    }
+    100% {
+      background-position-x: 0%;
+    }
+  }
