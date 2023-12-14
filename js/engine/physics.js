@@ -1,6 +1,7 @@
 // Import the required modules and classes.
 import Component from './component.js';
 import Renderer from './renderer.js';
+import Platform from '../game/platform.js';
 
 // The Physics class extends Component and handles the physics behavior of a game object.
 class Physics extends Component {
@@ -17,8 +18,17 @@ class Physics extends Component {
     // Update velocity based on acceleration and gravity.
     this.velocity.x += this.acceleration.x * deltaTime;
     this.velocity.y += (this.acceleration.y + this.gravity.y) * deltaTime;
-    // Move the game object based on the velocity.
-    this.gameObject.x += this.velocity.x * deltaTime;
+
+    const platforms = this.gameObject.game.gameObjects.filter((obj) => obj instanceof Platform);
+    for(let i=0; i<Math.abs(this.velocity.x); i++){
+      this.gameObject.x+=Math.sign(this.velocity.x);
+      for(const obj of platforms){
+           if(obj.getComponent(Physics).isColliding(this)){
+            this.gameObject.x-=Math.sign(this.velocity.x);
+            this.velocity.x = 0;
+           }
+        }
+    }
     this.gameObject.y += this.velocity.y * deltaTime;
   }
 

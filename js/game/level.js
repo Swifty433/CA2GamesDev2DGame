@@ -15,7 +15,7 @@ class Level extends Game {
     super(canvasId);
 
     // Create a player object and add it to the game
-    const player = new Player(this.canvas.width / 2 - 650, this.canvas.height / 2 - 25);
+    const player = new Player(0, -70);
     this.addGameObject(player);
     
     // Add the player UI object to the game
@@ -30,15 +30,31 @@ class Level extends Game {
 
     // Create platforms and add them to the game
     const platforms = [
-      new Platform(0, this.canvas.height - 20, platformWidth, 20),
-      new Platform(1 * (platformWidth + gap), this.canvas.height - 20, platformWidth, 20),
+      new Platform(-35.0, 99.0, 1000.0, 50.0, "rgb(128, 128, 128)", "platform"),
+new Platform(412.0, 13.5, 157.0, 4.0, "rgb(128, 128, 128)", "platform"),
+new Platform(945.0, -318.5, 20.0, 423.0, "rgb(128, 128, 128)", "platform"),
+new Platform(461.0, -318.5, 495.0, 22.0, "rgb(128, 128, 128)", "platform"),
+new Platform(421.0, -167.5, 524.0, 4.0, "rgb(128, 128, 128)", "platform"),
+new Platform(-35.0, -622.5, 15.0, 750.0, "rgb(128, 128, 128)", "platform"),
+new Platform(-34.0, -622.5, 1750.0, 22.0, "rgb(128, 128, 128)", "platform"),
+new Platform(953.0, -318.5, 755.0, 23.0, "rgb(128, 128, 128)", "platform"),
+new Platform(1701.0, -622.5, 12.0, 327.0, "rgb(128, 128, 128)", "platform"),
+new Platform(-25.0, -276.5, 346.0, 18.0, "rgb(128, 128, 128)", "platform"),
+new Platform(180.0, -92.5, 137.0, 5.0, "rgb(128, 128, 128)", "platform"),
+
+
+      
+
+
+
+
     ];
     for (const platform of platforms) {
       this.addGameObject(platform);
     }
 
     // Create enemies and add them to the game
-    this.addGameObject(new Enemy(300, this.canvas.height - 90));
+    this.addGameObject(new Enemy(-25, this.canvas.height - 100, 100, 50));
 
     // Create collectibles and add them to the game
     this.addGameObject(new Collectible(250, this.canvas.height - 100, 20, 20));

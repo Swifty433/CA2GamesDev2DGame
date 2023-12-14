@@ -3,11 +3,12 @@ import GameObject from '../engine/gameobject.js';
 import Renderer from '../engine/renderer.js';
 import Physics from '../engine/physics.js';
 import Input from '../engine/input.js';
-import { Images } from '../engine/resources.js';
+import { Images, AudioFiles } from '../engine/resources.js';
 import Enemy from './enemy.js';
 import Platform from './platform.js';
 import Collectible from './collectible.js';
 import ParticleSystem from '../engine/particleSystem.js';
+import SoundManager from '../engine/soundManager.js';
 
 // Defining a class Player that extends GameObject
 class Player extends GameObject {
@@ -30,6 +31,8 @@ class Player extends GameObject {
     this.isInvulnerable = false;
     this.isGamepadMovement = false;
     this.isGamepadJump = false;
+    this.addComponent(new SoundManager());
+    this.getComponent(SoundManager).addSound('jump', AudioFiles.jump);
   }
 
   // The update function runs every frame and contains game logic
@@ -41,10 +44,10 @@ class Player extends GameObject {
     
     // Handle player movement
     if (!this.isGamepadMovement && input.isKeyDown('KeyD')) {
-      physics.velocity.x = 100;
+      physics.velocity.x = 5;
       this.direction = -1;
     } else if (!this.isGamepadMovement && input.isKeyDown('KeyA')) {
-      physics.velocity.x = -100;
+      physics.velocity.x = -5;
       this.direction = 1;
     } else if (!this.isGamepadMovement) {
       physics.velocity.x = 0;
@@ -151,6 +154,7 @@ class Player extends GameObject {
       this.jumpTimer = this.jumpTime;
       this.getComponent(Physics).velocity.y = -this.jumpForce;
       this.isOnPlatform = false;
+      this.getComponent(SoundManager).playSound('jump');
     }
   }
   
