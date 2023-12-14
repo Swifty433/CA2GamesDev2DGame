@@ -5,10 +5,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #525252; /* Red background color */
+    background-color: #616161; /* Red background color */
+    background-image: url(/resources/images/backround/backround.png); /* Path to your background image */
+    background-size: cover; /* Adjust the background size as needed */
+    background-repeat: no-repeat; /* Prevent the background from repeating */
 }
 
 /* Add border to the canvas element */
 canvas {
     border: 1px solid #08bd29; /* 1 pixel solid white border */
+    /* Additional styles for the canvas if needed */
 }

@@ -5,12 +5,14 @@ import Enemy from './enemy.js';
 import PlayerUI from './playerUI.js';
 import Platform from './platform.js';
 import Collectible from './collectible.js';
+import { Images } from '../engine/resources.js';
 
 // Define a class Level that extends the Game class from the engine
 class Level extends Game {
   
   // Define the constructor for this class, which takes one argument for the canvas ID
   constructor(canvasId) {
+    
     // Call the constructor of the superclass (Game) with the canvas ID
     super(canvasId);
 
@@ -49,9 +51,16 @@ class Level extends Game {
     this.addGameObject(new Collectible(1250, this.canvas.height - 100, 20, 20));
     this.addGameObject(new Collectible(1450, this.canvas.height - 100, 20, 20));
     this.addGameObject(new Collectible(1650, this.canvas.height - 100, 20, 20));
+
+
+    
+
   }
   
 }
 
 // Export the Level class as the default export of this module
 export default Level;
+
+
+
