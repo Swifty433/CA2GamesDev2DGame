@@ -9,6 +9,7 @@ import Platform from './platform.js';
 import Collectible from './collectible.js';
 import ParticleSystem from '../engine/particleSystem.js';
 import SoundManager from '../engine/soundManager.js';
+import Animation from '../engine/animator.js';
 
 // Defining a class Player that extends GameObject
 class Player extends GameObject {
@@ -33,6 +34,9 @@ class Player extends GameObject {
     this.isGamepadJump = false;
     this.addComponent(new SoundManager());
     this.getComponent(SoundManager).addSound('jump', AudioFiles.jump);
+    this.addComponent(new Animation());
+    this.getComponent(Animation).addAnimation([Images.playerIdol1, Images.playerIdol2, Images.playerIdol3, Images.playerIdol4, Images.playerIdol5, Images.playerIdol6, Images.playerIdol7, Images.playerIdol8, Images.playerIdol9, Images.playerIdol10]);
+    this.getComponent(Animation).addAnimation([Images.running1, Images.running2, Images.running3, Images.running4, Images.running5, Images.running6, Images.running7, Images.running8]);
   }
 
   // The update function runs every frame and contains game logic
@@ -51,6 +55,7 @@ class Player extends GameObject {
       this.direction = 1;
     } else if (!this.isGamepadMovement) {
       physics.velocity.x = 0;
+
     }
 
     // Handle player jumping (using spacebar or 'W' key)
@@ -107,6 +112,16 @@ class Player extends GameObject {
     if (this.score >= 15) {
       console.log('You win!');
       location.reload();
+    }
+
+    let animation = this.getComponent(Animation);
+    if(physics.velocity.x == 0){
+      animation.currentAnimation = 0;
+      animation.speed = 10;
+    }
+    else{
+      animation.currentAnimation = 1;
+      animation.speed = 10;
     }
 
     super.update(deltaTime);
