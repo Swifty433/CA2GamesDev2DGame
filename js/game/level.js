@@ -30,47 +30,64 @@ class Level extends Game {
 
     // Create platforms and add them to the game
     const platforms = [
-      new Platform(2306, -545, 105, 171, "rgb(128, 128, 128)", "platform"),
-      new Platform(2407, -814, 11, 449, "rgb(128, 128, 128)", "platform"),
-      new Platform(945.0, -388.5, 1469.0, 24.5, "rgb(128, 128, 128)", "platform"),
-      new Platform(446.0, -401.5, 53.0, 10.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(277.0, -353.5, 87.0, 15.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(139.0, -276.5, 94.0, 13.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(-35.0, -182.5, 100.0, 313.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(57.0, -101.5, 237.0, 199.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(-37.0, 94.0, 995.0, 50.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(46.0, -138.5, 17.0, 193.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(267.0, 1.5, 191.0, 100.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(712.0, -314.5, 238.0, 13.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(840.0, 22.5, 100.0, 100.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(936.0, -388.5, 23.0, 531.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(-37.0, -622.5, 15.0, 750.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(2270, -723, 77, 13, "rgb(128, 128, 128)", "platform"),
-      new Platform(2407, -1477, 10, 740, "rgb(128, 128, 128)", "platform"),
-      new Platform(747, -822, 1334, 22, "rgb(128, 128, 128)", "platform"),
-      new Platform(747, -1476, 10, 676, "rgb(128, 128, 128)", "platform"),
-      new Platform(750, -1476, 1663, 19, "rgb(128, 128, 128)", "platform"),
-      new Platform(2073, -615, 107, 15, "rgb(128, 128, 128)", "platform"),
-      new Platform(-34.0, -622.5, 2113.0, 22.0, "rgb(128, 128, 128)", "platform"),
-      new Platform(2063, -822, 17, 221, "rgb(128, 128, 128)", "platform"),
-      new Platform(2214, -470, 100, 100, "rgb(128, 128, 128)", "platform"),
-      new Platform(1720, -912, 74, 91, "rgb(128, 128, 128)", "platform"),
-      new Platform(1521, -1000, 82, 18, "rgb(128, 128, 128)", "platform"),
-      new Platform(1193, -1001, 100, 22, "rgb(128, 128, 128)", "platform"),
-      new Platform(1000, -1068, 100, 15, "rgb(128, 128, 128)", "platform"),
-      new Platform(847, -1138, 100, 17, "rgb(128, 128, 128)", "platform"),
-      
-      
-    ];
+      new Platform(2306, -545, 105, 171, "	rgb(255,255,255)", "platform"),
+      new Platform(2407, -814, 11, 449, "	rgb(255,255,255)", "platform"),
+      new Platform(945.0, -388.5, 1469.0, 24.5, "	rgb(255,255,255)", "platform"),
+      new Platform(446.0, -401.5, 53.0, 10.0, "	rgb(255,255,255)", "platform"),
+      new Platform(277.0, -353.5, 87.0, 15.0, "	rgb(255,255,255)", "platform"),
+      new Platform(139.0, -276.5, 94.0, 13.0, "	rgb(255,255,255)", "platform"),
+      new Platform(-35.0, -182.5, 100.0, 313.0, "	rgb(255,255,255)", "platform"),
+      new Platform(57.0, -101.5, 237.0, 199.0, "	rgb(255,255,255)", "platform"),
+      new Platform(-37.0, 94.0, 995.0, 50.0, "	rgb(255,255,255)", "platform"),
+      new Platform(46.0, -138.5, 17.0, 193.0, "	rgb(255,255,255)", "platform"),
+      new Platform(267.0, 1.5, 191.0, 100.0, "	rgb(255,255,255)", "platform"),
+      new Platform(840.0, 22.5, 100.0, 100.0, "	rgb(255,255,255)", "platform"),
+      new Platform(936.0, -388.5, 23.0, 531.0, "	rgb(255,255,255)", "platform"),
+      new Platform(-37.0, -622.5, 15.0, 750.0, "	rgb(255,255,255)", "platform"),
+      new Platform(2270, -723, 77, 13, "	rgb(255,255,255)", "platform"),
+      new Platform(747, -822, 1334, 22, "	rgb(255,255,255)", "platform"),
+      new Platform(747, -1476, 10, 676, "	rgb(255,255,255)", "platform"),
+      new Platform(2073, -615, 107, 15, "	rgb(255,255,255)", "platform"),
+      new Platform(-34.0, -622.5, 2113.0, 22.0, "	rgb(255,255,255)", "platform"),
+      new Platform(2063, -822, 17, 221, "	rgb(255,255,255)", "platform"),
+      new Platform(2214, -470, 100, 100, "	rgb(255,255,255)", "platform"),
+      new Platform(1720, -912, 74, 91, "	rgb(255,255,255)", "platform"),
+      new Platform(1521, -1018, 82, 18, "	rgb(255,255,255)", "platform"),
+      new Platform(1065, -1019, 100, 22, "	rgb(255,255,255)", "platform"),
+      new Platform(847, -1118, 100, 17, "	rgb(255,255,255)", "platform"),
+      new Platform(1102, -1211, 100, 15, "	rgb(255,255,255)", "platform"),
+      new Platform(813.0, -309.5, 126.0, 13.0, "	rgb(255,255,255)", "platform"),
+      new Platform(1460, -1239, 100, 16, "	rgb(255,255,255)", "platform"),
+      new Platform(2408, -1274, 9, 500, "rgb(255,255,255)", "platform"),
+      new Platform(750, -1476, 2033, 19, "rgb(255,255,255)", "platform"),
+      new Platform(2752, -1467, 31, 213, "rgb(255,255,255)", "platform"),
+      new Platform(2412, -1273, 366, 21, "rgb(255,255,255)", "platform"),
+      new Platform(1804, -1279, 100, 21, "rgb(255,255,255)", "platform"),
+      new Platform(2208, -1274, 213, 21, "rgb(255,255,255)", "platform"),
+    ]
     for (const platform of platforms) {
       this.addGameObject(platform);
     }
 
     // Create enemies and add them to the game
-    this.addGameObject(new Enemy(-25, this.canvas.height - 100, 100, 50));
+    this.addGameObject(new Enemy());
 
     // Create collectibles and add them to the game
-    this.addGameObject(new Collectible(680,0, 20, 20));
+    this.addGameObject(new Collectible(650,50, 20, 20));
+    this.addGameObject(new Collectible(880,-15, 20, 20));
+    this.addGameObject(new Collectible(175,-312, 20, 20));
+    this.addGameObject(new Collectible(315,-400, 20, 20));
+    this.addGameObject(new Collectible(650,-200, 20, 20));
+    this.addGameObject(new Collectible(680,-500, 20, 20));
+    this.addGameObject(new Collectible(1730,-430, 20, 20));
+    this.addGameObject(new Collectible(2295,-770, 20, 20));
+    this.addGameObject(new Collectible(800,-880, 20, 20));
+    this.addGameObject(new Collectible(2111,-1124, 20, 20));
+    this.addGameObject(new Collectible(1500,-1282, 20, 20));
+    this.addGameObject(new Collectible(1841,-1398, 20, 20));
+    this.addGameObject(new Collectible(2650,-1339, 20, 20));
+    this.addGameObject(new Collectible(885,-1168, 20, 20));
+    this.addGameObject(new Collectible(1685,-859, 20, 20));
   }
   
 }

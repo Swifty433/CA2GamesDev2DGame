@@ -25,7 +25,7 @@ body {
 
 /* Add border to the canvas element */
 canvas {
-    border: 1px solid #08bd29; /* 1 pixel solid white border */
+    border: 1px solid #353535; /* 1 pixel solid white border */
     border-radius: 5px; /* 5 pixels rounded border */
     /* Additional styles for the canvas if needed */
 }
