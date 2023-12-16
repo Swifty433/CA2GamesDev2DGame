@@ -19,6 +19,11 @@ const Images = {
   running6: new Image(), // The Image instance for the player walking animation frame 6.
   running7: new Image(), // The Image instance for the player walking animation frame 7.
   running8: new Image(), // The Image instance for the player walking animation frame 8.
+
+  jumping1: new Image(), // The Image instance for the player jumping animation frame 1.
+  jumping2: new Image(), // The Image instance for the player jumping animation frame 2.
+  jumping3: new Image(), // The Image instance for the player jumping animation frame 3.
+
   enemy: new Image(), // The Image instance for the enemy.
   backround: new Image(), // The Image instance for the background.  
 };
@@ -50,6 +55,10 @@ Images.running5.src = './resources/images/player/PlayerRun/PlayerRun (5).png'; /
 Images.running6.src = './resources/images/player/PlayerRun/PlayerRun (6).png'; // Update the image path
 Images.running7.src = './resources/images/player/PlayerRun/PlayerRun (7).png'; // Update the image path
 Images.running8.src = './resources/images/player/PlayerRun/PlayerRun (8).png'; // Update the image path
+
+Images.jumping1.src = './resources/images/player/PlayerJump/Jumping (1).png'; // Update the image path
+Images.jumping2.src = './resources/images/player/PlayerJump/Jumping (2).png'; // Update the image path
+Images.jumping3.src = './resources/images/player/PlayerJump/Jumping (3).png'; // Update the image path
 
 
 

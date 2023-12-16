@@ -34,9 +34,11 @@ class Player extends GameObject {
     this.isGamepadJump = false;
     this.addComponent(new SoundManager());
     this.getComponent(SoundManager).addSound('jump', AudioFiles.jump);
+    this.getComponent(SoundManager).addSound('collect', AudioFiles.collect);
     this.addComponent(new Animation());
     this.getComponent(Animation).addAnimation([Images.playerIdol1, Images.playerIdol2, Images.playerIdol3, Images.playerIdol4, Images.playerIdol5, Images.playerIdol6, Images.playerIdol7, Images.playerIdol8, Images.playerIdol9, Images.playerIdol10]);
     this.getComponent(Animation).addAnimation([Images.running1, Images.running2, Images.running3, Images.running4, Images.running5, Images.running6, Images.running7, Images.running8]);
+    this.getComponent(Animation).addAnimation([Images.jumping1, Images.jumping2, Images.jumping3]);
   }
 
   // The update function runs every frame and contains game logic
@@ -119,9 +121,13 @@ class Player extends GameObject {
       animation.currentAnimation = 0;
       animation.speed = 10;
     }
+    else if(physics.velocity.y <= 0 && this.isJumping){
+      animation.currentAnimation = 2;
+      animation.speed = 10;
+    }
     else{
       animation.currentAnimation = 1;
-      animation.speed = 10;
+      animation.speed = 15;
     }
 
     super.update(deltaTime);
