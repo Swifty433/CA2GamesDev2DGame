@@ -35,6 +35,7 @@ class Player extends GameObject {
     this.addComponent(new SoundManager());
     this.getComponent(SoundManager).addSound('jump', AudioFiles.jump);
     this.getComponent(SoundManager).addSound('collect', AudioFiles.collect);
+    this.getComponent(SoundManager).addSound('Music', AudioFiles.music);
     this.addComponent(new Animation());
     this.getComponent(Animation).addAnimation([Images.playerIdol1, Images.playerIdol2, Images.playerIdol3, Images.playerIdol4, Images.playerIdol5, Images.playerIdol6, Images.playerIdol7, Images.playerIdol8, Images.playerIdol9, Images.playerIdol10]);
     this.getComponent(Animation).addAnimation([Images.running1, Images.running2, Images.running3, Images.running4, Images.running5, Images.running6, Images.running7, Images.running8]);
@@ -45,6 +46,7 @@ class Player extends GameObject {
   update(deltaTime) {
     const physics = this.getComponent(Physics); // Get physics component
     const input = this.getComponent(Input); // Get input component
+    const soundManager = this.getComponent(SoundManager).playSound("Music"); // Get sound manager component
 
     this.handleGamepadInput(input);
     
@@ -91,11 +93,14 @@ class Player extends GameObject {
     const platforms = this.game.gameObjects.filter((obj) => obj instanceof Platform);
     for (const platform of platforms) {
       if (physics.isColliding(platform.getComponent(Physics))) {
-        if (!this.isJumping) {
+        if (!this.isJumping ) {
+          if(physics.velocity.y > 0)
+          {
+            this.y = platform.y - this.renderer.height;
+            this.isOnPlatform = true;
+          }
           physics.velocity.y = 0;
           physics.acceleration.y = 0;
-          this.y = platform.y - this.renderer.height;
-          this.isOnPlatform = true;
         }
       }
     }
@@ -121,13 +126,17 @@ class Player extends GameObject {
       animation.currentAnimation = 0;
       animation.speed = 10;
     }
-    else if(physics.velocity.y <= 0 && this.isJumping){
+    if(physics.velocity.y <= 0 && this.isJumping){
       animation.currentAnimation = 2;
       animation.speed = 10;
     }
-    else{
+    else if(physics.velocity.x != 0){
       animation.currentAnimation = 1;
       animation.speed = 15;
+    }
+    else if(physics.velocity.x == 0){
+      animation.currentAnimation = 0;
+      animation.speed = 10;
     }
 
     super.update(deltaTime);
@@ -208,8 +217,9 @@ class Player extends GameObject {
 
   emitCollectParticles() {
     // Create a particle system at the player's position when a collectible is collected
-    const particleSystem = new ParticleSystem(this.x, this.y, 'yellow', 20, 1, 0.5);
+    const particleSystem = new ParticleSystem(this.x, this.y, 'red', 50, 1, 0.5);
     this.game.addGameObject(particleSystem);
+    this.getComponent(SoundManager).playSound('collect');
   }
 
   resetPlayerState() {

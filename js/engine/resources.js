@@ -25,6 +25,13 @@ const Images = {
   jumping3: new Image(), // The Image instance for the player jumping animation frame 3.
 
   enemy: new Image(), // The Image instance for the enemy.
+
+  coin1: new Image(), // The Image instance for the collectable.
+  coin2: new Image(), // The Image instance for the collectable.
+  coin3: new Image(), // The Image instance for the collectable.
+  coin4: new Image(), // The Image instance for the collectable.
+  coin5: new Image(), // The Image instance for the collectable.
+
   backround: new Image(), // The Image instance for the background.  
 };
 
@@ -32,6 +39,7 @@ const Images = {
 const AudioFiles = {
   jump: './resources/audio/jump.mp3', // The file path of the jump sound.
   collect: './resources/audio/collect.mp3', // The file path of the collect sound.
+  music: './resources/audio/Music.mp3', // The file path of the background music.
   // Add more audio file paths as needed
 };
 
@@ -60,7 +68,11 @@ Images.jumping1.src = './resources/images/player/PlayerJump/Jumping (1).png'; //
 Images.jumping2.src = './resources/images/player/PlayerJump/Jumping (2).png'; // Update the image path
 Images.jumping3.src = './resources/images/player/PlayerJump/Jumping (3).png'; // Update the image path
 
-
+Images.coin1.src = './resources/images/objects/coin (1).png'; // Update the image path
+Images.coin2.src = './resources/images/objects/coin (2).png'; // Update the image path
+Images.coin3.src = './resources/images/objects/coin (3).png'; // Update the image path
+Images.coin4.src = './resources/images/objects/coin (4).png'; // Update the image path
+Images.coin5.src = './resources/images/objects/coin (5).png'; // Update the image path
 
 // Set the source of the enemy image.
 Images.enemy.src = './resources/images/enemy/enemy.png'; // Update the image path

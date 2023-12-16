@@ -48,13 +48,13 @@ class Enemy extends GameObject {
     if (this.movingRight) {
       // If it hasn't reached its movement limit, make it move right
       if (this.movementDistance < this.movementLimit) {
-        physics.velocity.x = 50;
+        physics.velocity.x = 1;
         this.movementDistance += Math.abs(physics.velocity.x) * deltaTime;
         this.getComponent(Renderer).gameObject.direction = 1;
       } else {
         // If it reached the limit, make it move left
         this.movingRight = false;
-        this.movementDistance = 0;
+        this.movementDistance = 10;
       }
     } else {
       // If it hasn't reached its movement limit, make it move left
@@ -65,7 +65,7 @@ class Enemy extends GameObject {
       } else {
         // If it reached the limit, make it move right
         this.movingRight = true;
-        this.movementDistance = 0;
+        this.movementDistance = 10;
       }
     }
 
