@@ -75,6 +75,8 @@ class Level extends Game {
     this.addGameObject(new Enemy(1086,-445));
     this.addGameObject(new Enemy(782,-871));
     this.addGameObject(new Enemy(2535,-1406));
+    this.addGameObject(new Enemy(1590,-948));
+    this.addGameObject(new Enemy(2056,-516));
 
     // Create collectibles and add them to the game
     this.addGameObject(new Collectible(650,50, 20, 20,Images.coin1));

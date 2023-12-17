@@ -40,6 +40,7 @@ const AudioFiles = {
   jump: './resources/audio/jump.mp3', // The file path of the jump sound.
   collect: './resources/audio/collect.mp3', // The file path of the collect sound.
   music: './resources/audio/Music.mp3', // The file path of the background music.
+  hit: './resources/audio/hit.mp3', // The file path of the hit sound.
   // Add more audio file paths as needed
 };
 

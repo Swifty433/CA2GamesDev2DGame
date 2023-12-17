@@ -36,6 +36,7 @@ class Player extends GameObject {
     this.getComponent(SoundManager).addSound('jump', AudioFiles.jump);
     this.getComponent(SoundManager).addSound('collect', AudioFiles.collect);
     this.getComponent(SoundManager).addSound('Music', AudioFiles.music);
+    this.getComponent(SoundManager).addSound('hit', AudioFiles.hit);
     this.addComponent(new Animation());
     this.getComponent(Animation).addAnimation([Images.playerIdol1, Images.playerIdol2, Images.playerIdol3, Images.playerIdol4, Images.playerIdol5, Images.playerIdol6, Images.playerIdol7, Images.playerIdol8, Images.playerIdol9, Images.playerIdol10]);
     this.getComponent(Animation).addAnimation([Images.running1, Images.running2, Images.running3, Images.running4, Images.running5, Images.running6, Images.running7, Images.running8]);
@@ -206,6 +207,9 @@ class Player extends GameObject {
     if (!this.isInvulnerable) {
       this.lives--;
       this.isInvulnerable = true;
+      this.getComponent(SoundManager).playSound('hit');
+      //console log lives
+      console.log(`Lives: ${this.lives}`);
       // Make player vulnerable again after 2 seconds
       setTimeout(() => {
         this.isInvulnerable = false;

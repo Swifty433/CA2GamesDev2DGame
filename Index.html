@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css"> <!-- Link to an external CSS file -->
     <title>2D Game Engine</title>
-    
+    <style>
+        .message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <div class="message">Press ESC to exit game.</div>
     <canvas id="gameCanvas"></canvas> <!-- Canvas element with the ID "gameCanvas" -->
     <script type="module" src="js/start.js"></script> <!-- Script tag to include an external JavaScript file -->
     <script>

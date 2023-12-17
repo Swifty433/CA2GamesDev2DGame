@@ -21,7 +21,7 @@ class Enemy extends GameObject {
     super(x, y);
 
     // Adding components and initializing properties
-    this.addComponent(new Renderer('green', 25, 25, Images.enemy));
+    this.addComponent(new Renderer('green', 30, 30, Images.enemy));
     this.addComponent(new Physics({ x: 50, y: 0 }, { x: 0, y: 0 }));
 
     // Additional properties for timer-based movement

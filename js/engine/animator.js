@@ -2,8 +2,10 @@ import { Images } from '../engine/resources.js';
 import Renderer from "./renderer.js";
 import Component from './component.js';
 
-class Animation extends Component {
-    constructor() {
+class Animation extends Component 
+{
+    constructor() 
+    {
         super();
         this.gameAnimation = [];
         this.currentFrame = 0;
@@ -11,13 +13,16 @@ class Animation extends Component {
         this.currentAnimation = 0;
     }
 
-    addAnimation(animation) {
+    addAnimation(animation) 
+    {
         this.gameAnimation.push(animation);
     }
 
-    update(deltaTime) {
+    update(deltaTime) 
+    {
         this.currentFrame += deltaTime * this.speed;
-        if (this.currentFrame >= this.gameAnimation[this.currentAnimation].length) {
+        if (this.currentFrame >= this.gameAnimation[this.currentAnimation].length) 
+        {
             this.currentFrame = 0;
         }
         const renderer = this.gameObject.getComponent(Renderer);
