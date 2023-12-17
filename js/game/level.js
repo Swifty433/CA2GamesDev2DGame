@@ -30,6 +30,7 @@ class Level extends Game {
     this.camera.target = player;
 
     // Create platforms and add them to the game
+    //refrences rubys code for platforms https://github.com/Ruby101-was-taken/FinalGameEngine/tree/main/levelEditor
     const platforms = [
       new Platform(2306, -545, 105, 171, "rgb(255,255,255)", "platform"),
       new Platform(2407, -814, 11, 449, "rgb(255,255,255)", "platform"),
