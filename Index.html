@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css"> <!-- Link to an external CSS file -->
     <title>2D Game Engine</title>
+    
+    <!-- CSS for the message that appears at the top of the screen -->
     <style>
         .message {
             position: fixed;
@@ -19,9 +21,11 @@
     </style>
 </head>
 <body>
+    <!-- Tip to quit the game -->
     <div class="message">Press ESC to exit game.</div>
     <canvas id="gameCanvas"></canvas> <!-- Canvas element with the ID "gameCanvas" -->
     <script type="module" src="js/start.js"></script> <!-- Script tag to include an external JavaScript file -->
+    <!-- Script to quit the game when the ESC key is pressed -->
     <script>
         document.addEventListener("keydown", function(event) {
             if (event.key === "Escape") {

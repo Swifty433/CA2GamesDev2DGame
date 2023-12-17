@@ -30,13 +30,14 @@ class Player extends GameObject {
     this.jumpTime = 0.3;
     this.jumpTimer = 0;
     this.isInvulnerable = false;
-    this.isGamepadMovement = false;
-    this.isGamepadJump = false;
+
+    // Add sound manager component
     this.addComponent(new SoundManager());
     this.getComponent(SoundManager).addSound('jump', AudioFiles.jump);
     this.getComponent(SoundManager).addSound('collect', AudioFiles.collect);
     this.getComponent(SoundManager).addSound('Music', AudioFiles.music);
     this.getComponent(SoundManager).addSound('hit', AudioFiles.hit);
+    // Add animation component
     this.addComponent(new Animation());
     this.getComponent(Animation).addAnimation([Images.playerIdol1, Images.playerIdol2, Images.playerIdol3, Images.playerIdol4, Images.playerIdol5, Images.playerIdol6, Images.playerIdol7, Images.playerIdol8, Images.playerIdol9, Images.playerIdol10]);
     this.getComponent(Animation).addAnimation([Images.running1, Images.running2, Images.running3, Images.running4, Images.running5, Images.running6, Images.running7, Images.running8]);
@@ -49,22 +50,24 @@ class Player extends GameObject {
     const input = this.getComponent(Input); // Get input component
     const soundManager = this.getComponent(SoundManager).playSound("Music"); // Get sound manager component
 
-    this.handleGamepadInput(input);
     
+    //Changed all input for the player controls to 'a' and 'd' keys for movement left and right and 'w' or spacebar for jumping
+
+
     // Handle player movement
-    if (!this.isGamepadMovement && input.isKeyDown('KeyD')) {
+    if (input.isKeyDown('KeyD')) {
       physics.velocity.x = 5;
       this.direction = -1;
-    } else if (!this.isGamepadMovement && input.isKeyDown('KeyA')) {
+    } else if (input.isKeyDown('KeyA')) {
       physics.velocity.x = -5;
       this.direction = 1;
-    } else if (!this.isGamepadMovement) {
+    } else {
       physics.velocity.x = 0;
 
     }
 
     // Handle player jumping (using spacebar or 'W' key)
-    if ((!this.isGamepadJump && input.isKeyDown('Space')) || (!this.isGamepadJump && input.isKeyDown('KeyW')) && this.isOnPlatform) {
+    if ((input.isKeyDown('Space')) || (input.isKeyDown('KeyW')) && this.isOnPlatform) {
       this.startJump();
     }
 
@@ -116,22 +119,18 @@ class Player extends GameObject {
       // Check if player has no lives left
       if (this.lives <= 0) {
         console.log('You lose!');
-        window.location.href = "YouLose.html";
+        window.location.href = "YouLose.html"; //when you lose the game the page will redirect to the you lose page
       }
     }
 
     // Check if player has collected all collectibles
     if (this.score >= 15) {
       console.log('You win!');
-      window.location.href = "YouWin.html";
-      //location.reload();
-    }
+      window.location.href = "YouWin.html"; //when you win the game the page will redirect to the you win page
+        }
 
+    //Animation
     let animation = this.getComponent(Animation);
-    if(physics.velocity.x == 0){
-      animation.currentAnimation = 0;
-      animation.speed = 10;
-    }
     if(physics.velocity.y <= 0 && this.isJumping){
       animation.currentAnimation = 2;
       animation.speed = 10;
@@ -146,41 +145,6 @@ class Player extends GameObject {
     }
 
     super.update(deltaTime);
-  }
-
-  handleGamepadInput(input){
-    const gamepad = input.getGamepad(); // Get the gamepad input
-    const physics = this.getComponent(Physics); // Get physics component
-    if (gamepad) {
-      // Reset the gamepad flags
-      this.isGamepadMovement = false;
-      this.isGamepadJump = false;
-
-      // Handle movement
-      const horizontalAxis = gamepad.axes[0];
-      // Move right
-      if (horizontalAxis > 0.1) {
-        this.isGamepadMovement = true;
-        physics.velocity.x = 100;
-        this.direction = -1;
-      } 
-      // Move left
-      else if (horizontalAxis < -0.1) {
-        this.isGamepadMovement = true;
-        physics.velocity.x = -100;
-        this.direction = 1;
-      } 
-      // Stop
-      else {
-        physics.velocity.x = 0;
-      }
-      
-      // Handle jump, using gamepad button 0 (typically the 'A' button on most gamepads)
-      if (input.isGamepadButtonDown(0) && this.isOnPlatform) {
-        this.isGamepadJump = true;
-        this.startJump();
-      }
-    }
   }
 
   startJump() {
@@ -228,11 +192,11 @@ class Player extends GameObject {
     // Create a particle system at the player's position when a collectible is collected
     const particleSystem = new ParticleSystem(this.x, this.y, 'red', 50, 1, 0.5);
     this.game.addGameObject(particleSystem);
-    this.getComponent(SoundManager).playSound('collect');
+    this.getComponent(SoundManager).playSound('collect');//added the sound for collecting the gem
   }
 
   resetPlayerState() {
-    // Reset the player's state, repositioning it and nullifying movement
+    // Reset th players position 
     this.x = 870;
     this.y = -165;
     this.getComponent(Physics).velocity = { x: 0, y: 0 };
