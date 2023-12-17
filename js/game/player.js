@@ -18,7 +18,7 @@ class Player extends GameObject {
     super(x, y); // Call parent's constructor
     this.renderer = new Renderer('blue', 50, 50, Images.player); // Add renderer
     this.addComponent(this.renderer);
-    this.addComponent(new Physics({ x: 0, y: 0 }, { x: 0, y: 0 },{x: 0, y: 700})); // Add physics
+    this.addComponent(new Physics({ x: 50, y: 0 }, { x: 0, y: 0 },{x: 0, y: 700})); // Add physics
     this.addComponent(new Input()); // Add input for handling user input
     // Initialize all the player specific properties
     this.direction = 1;
@@ -224,8 +224,8 @@ class Player extends GameObject {
 
   resetPlayerState() {
     // Reset the player's state, repositioning it and nullifying movement
-    this.x = this.game.canvas.width / 2;
-    this.y = this.game.canvas.height / 2;
+    this.x = 870;
+    this.y = -165;
     this.getComponent(Physics).velocity = { x: 0, y: 0 };
     this.getComponent(Physics).acceleration = { x: 0, y: 0 };
     this.direction = 1;

@@ -20,7 +20,7 @@ class Level extends Game {
     super(canvasId);
 
     // Create a player object and add it to the game
-    const player = new Player(0, -120);
+    const player = new Player(871, -23);
     this.addGameObject(player);
     
     // Add the player UI object to the game
@@ -28,10 +28,6 @@ class Level extends Game {
 
     // Set the game's camera target to the player
     this.camera.target = player;
-
-    // Define the platform's width and the gap between platforms
-    const platformWidth = 2500;
-    const gap = 100;
 
     // Create platforms and add them to the game
     const platforms = [
@@ -81,7 +77,7 @@ class Level extends Game {
 
     // Create collectibles and add them to the game
     this.addGameObject(new Collectible(650,50, 20, 20,Images.coin1));
-    this.addGameObject(new Collectible(880,-15, 20, 20,Images.coin1));
+    this.addGameObject(new Collectible(0,-225, 20, 20,Images.coin1));
     this.addGameObject(new Collectible(175,-312, 20, 20,Images.coin1));
     this.addGameObject(new Collectible(315,-400, 20, 20,Images.coin1));
     this.addGameObject(new Collectible(650,-200, 20, 20,Images.coin1));
