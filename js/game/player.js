@@ -112,13 +112,18 @@ class Player extends GameObject {
 
     // Check if player has no lives left
     if (this.lives <= 0) {
-      location.reload();
+      // Check if player has no lives left
+      if (this.lives <= 0) {
+        console.log('You lose!');
+        window.location.href = "YouLose.html";
+      }
     }
 
     // Check if player has collected all collectibles
     if (this.score >= 15) {
       console.log('You win!');
-      location.reload();
+      window.location.href = "YouWin.html";
+      //location.reload();
     }
 
     let animation = this.getComponent(Animation);

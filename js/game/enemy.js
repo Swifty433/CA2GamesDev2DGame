@@ -16,82 +16,68 @@ import Player from './player.js';
 // import Platform from './platform.js';
 import Platform from './platform.js';
 
-// Define a new class, Enemy, which extends (i.e., inherits from) GameObject
 class Enemy extends GameObject {
-
-  // Define the constructor for this class, which takes two arguments for the x and y coordinates
   constructor(x, y) {
-    // Call the constructor of the superclass (GameObject) with the x and y coordinates
     super(x, y);
-    
-    // Add a Renderer component to this enemy, responsible for rendering it in the game.
-    // The renderer uses the color 'green', dimensions 50x50, and an enemy image from the Images object
+
+    // Adding components and initializing properties
     this.addComponent(new Renderer('green', 25, 25, Images.enemy));
-    
-    // Add a Physics component to this enemy, responsible for managing its physical interactions
-    // Sets the initial velocity and acceleration
     this.addComponent(new Physics({ x: 50, y: 0 }, { x: 0, y: 0 }));
-    
-    // Initialize variables related to enemy's movement
-    this.movementDistance = 0;
-    this.movementLimit = 100;
-    this.movingRight = true;
+
+    // Additional properties for timer-based movement
+    this.totalTimeElapsed = 0; // Property to track total elapsed time
+    this.directionInterval = 2; // Set the interval time in seconds
+    this.movementDuration = 1; // Set the movement duration in seconds
+    this.direction = 1; // Direction flag: 1 for right, -1 for left
   }
 
-  // Define an update method that will run every frame of the game. It takes deltaTime as an argument
-  // which represents the time passed since the last frame
   update(deltaTime) {
-    // Get the Physics component of this enemy
     const physics = this.getComponent(Physics);
+    const renderer = this.getComponent(Renderer);
 
-    // Check if the enemy is moving to the right
-    if (this.movingRight) {
-      // If it hasn't reached its movement limit, make it move right
-      if (this.movementDistance < this.movementLimit) {
-        physics.velocity.x = 1;
-        this.movementDistance += Math.abs(physics.velocity.x) * deltaTime;
-        this.getComponent(Renderer).gameObject.direction = 1;
+    // Incrementing the total elapsed time
+    this.totalTimeElapsed += deltaTime;
+
+    if (this.totalTimeElapsed <= this.directionInterval) {
+      // move right for the specified duration
+      if (this.totalTimeElapsed <= this.movementDuration) {
+        physics.velocity.x = 2; // velocity
+        renderer.gameObject.direction = 1;
       } else {
-        // If it reached the limit, make it move left
-        this.movingRight = false;
-        this.movementDistance = 10;
+        // Stop moving after the specified duration
+        physics.velocity.x = 0;
+      }
+    } else if (this.totalTimeElapsed > this.directionInterval && this.totalTimeElapsed <= this.directionInterval * 2) {
+      // Move left for the specified duration
+      if (this.totalTimeElapsed <= this.directionInterval + this.movementDuration) {
+        physics.velocity.x = -2; // Velocity
+        renderer.gameObject.direction = -1;
+      } else {
+        // Stop moving after the specified duration
+        physics.velocity.x = 0;
       }
     } else {
-      // If it hasn't reached its movement limit, make it move left
-      if (this.movementDistance < this.movementLimit) {
-        physics.velocity.x = -50;
-        this.movementDistance += Math.abs(physics.velocity.x) * deltaTime;
-        this.getComponent(Renderer).gameObject.direction = -1;
-      } else {
-        // If it reached the limit, make it move right
-        this.movingRight = true;
-        this.movementDistance = 10;
-      }
+      // repeats cycle after the specified duration finishes
+      this.totalTimeElapsed = 0;
     }
 
-    // Check if the enemy is colliding with the player
-    const player = this.game.gameObjects.find(obj => obj instanceof Player);
-    if (physics.isColliding(player.getComponent(Physics))) {
-      player.collidedWithEnemy();
-    }
-
-    // Check if the enemy is colliding with any platforms
+    // Check collision with platforms
     const platforms = this.game.gameObjects.filter(obj => obj instanceof Platform);
-    this.isOnPlatform = false;
     for (const platform of platforms) {
       if (physics.isColliding(platform.getComponent(Physics))) {
-        // If it is, stop its vertical movement and position it on top of the platform
-        physics.velocity.y = 0;
-        physics.acceleration.y = 0;
-        this.y = platform.y - this.getComponent(Renderer).height;
-        this.isOnPlatform = true;
+        // Handle collision with the platform
+
+        // If the enemy is moving downwards, stop its downward movement and place it on the platform
+        if (physics.velocity.y > 0) {
+          physics.velocity.y = 0;
+          this.y = platform.y - renderer.height; // Position the enemy just above the platform
+          physics.isOnGround = true; // Assuming a flag to indicate the enemy is on the ground
+        }
       }
     }
 
-    // Call the update method of the superclass (GameObject), passing along deltaTime
     super.update(deltaTime);
   }
 }
 
-// Export the Enemy class as the default export of this module
 export default Enemy;
